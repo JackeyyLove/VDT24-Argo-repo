@@ -1,0 +1,17 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: app
+  namespace: argocd
+spec:
+  destination:
+    namespace: app
+    server: 'https://kubernetes.default.svc'
+  source:
+    path: subchart
+    repoURL: 'https://github.com/JackeyyLove/VDT24-Argo-repo.git'
+    targetRevision: HEAD
+  project: default
+  syncPolicy:
+    syncOptions:
+      - CreateNamespace=true
